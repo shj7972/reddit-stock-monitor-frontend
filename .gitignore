@@ -11,3 +11,9 @@ yarn-error.log*
 *.swp
 *.swo
 *~
+__pycache__/
+*.pyc
+.Python
+env/
+venv/
+.venv/
