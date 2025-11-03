@@ -42,17 +42,52 @@ heroku create reddit-stock-monitor-api
 ```bash
 heroku config:set REDDIT_CLIENT_ID=your_reddit_client_id
 heroku config:set REDDIT_CLIENT_SECRET=your_reddit_client_secret
+heroku config:set REDDIT_USER_AGENT=RedditStockMonitor/1.0
 heroku config:set OPENAI_API_KEY=your_openai_api_key
 heroku config:set MONGODB_URL=your_mongodb_url
 ```
 
 ### 4. 배포
 ```bash
-git init
-git add .
-git commit -m "Initial commit"
-heroku git:remote -a reddit-stock-monitor-api
 git push heroku main
+```
+
+### 5. 로그 확인
+```bash
+heroku logs --tail -a reddit-stock-monitor-api
+```
+
+## 백엔드 배포 (Docker)
+
+### 1. Docker 및 Docker Compose 설치
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install docker.io docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+### 2. 환경 변수 파일 생성
+```bash
+cd backend
+cp .env.example .env
+# .env 파일을 실제 값으로 수정
+```
+
+### 3. Docker Compose로 배포
+```bash
+docker-compose up -d
+```
+
+### 4. 로그 확인
+```bash
+docker-compose logs -f reddit-stock-api
+```
+
+### 5. 서비스 중지
+```bash
+docker-compose down
 ```
 
 ## 백엔드 배포 (AWS)
